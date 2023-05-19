@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+      
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2023-05-07',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          events: [
+            {
+              title: 'All Day Event',
+              start: '2023-05-01'
+            },
+          ]
+        });
+      
+        calendar.render();
+      });
+</script>
+
+
+
+<div id='calendar' class="col col-8"></div>
+
+
+  
+{% endblock content %}
