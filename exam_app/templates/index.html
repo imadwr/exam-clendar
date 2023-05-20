@@ -14,19 +14,16 @@
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
-          events: [
-            {
-              title: 'All Day Event',
-              start: '2023-05-01'
-            },
-          ]
+          events: '/all_events'
+
+          
         });
       
         calendar.render();
       });
 </script>
 
-
+<div><a class="btn btn-primary" href="{% url 'add_exam' %}">Add exam</a></div>
 
 <div id='calendar' class="col col-8"></div>
 
