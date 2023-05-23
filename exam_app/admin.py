@@ -5,4 +5,9 @@ from .models import *
 
 @admin.register(Exam)
 class examModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["name", "salle", "group", "day", "start_time", "end_time"]
+
+
+@admin.register(Student)
+class studentModelAdmin(admin.ModelAdmin):
+    list_display = ["first_name", "last_name"]

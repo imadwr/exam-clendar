@@ -15,7 +15,7 @@
   </head>
   <body>
     <nav class="sidebar">
-      <a href="#" class="logo">{{ request.user }}</a>
+      <a href="#" class="logo">Hello {{ request.user }}</a>
       <div class="menu-content">
         <ul class="menu-items">
           <li class="item">
@@ -32,10 +32,10 @@
                 Manage
               </div>
               <li class="item">
-                <a href="#">List Students</a>
+                <a href="{% url 'list_students' %}">List Students</a>
               </li>
               <li class="item">
-                <a href="#">Add Student</a>
+                <a href="{% url 'add_student' %}">Add Student</a>
               </li>
               <li class="item">
                 <a href="#">First sublink</a>
@@ -50,7 +50,7 @@
             <ul class="menu-items submenu">
               <div class="menu-title">
                 <i class="fa-solid fa-chevron-left"></i>
-                Your submenu title
+                Exams manage
               </div>
               <li class="item">
                 <a href="{% url 'add_exam' %}">Add Exam</a>
@@ -60,12 +60,12 @@
               </li>
             </ul>
           </li>
-          <li class="item">
+          {% comment %} <li class="item">
             <a href="#">Your second link</a>
-          </li>
-          <li class="item">
+          </li> {% endcomment %}
+          {% comment %} <li class="item">
             <a href="#">Your third link</a>
-          </li>
+          </li> {% endcomment %}
           {% if request.user.is_authenticated %}
           <li class="item">
             <a href="{% url 'logout' %}">Logout</a>

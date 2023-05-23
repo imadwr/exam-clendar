@@ -21,3 +21,5 @@ class Exam(models.Model):
     day = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
@@ -57,6 +57,12 @@ def addExamView(request):
     else:
         addExamForm = AddExamForm()
         return render(request, 'add_exam.html', {'form': addExamForm})
+    
+def deleteExamView(request, id):
+    exam = get_object_or_404(Exam, pk=id)
+    exam.delete()
+    return redirect("list_exams")
+
 
 
 def all_Exams(request):
@@ -76,3 +82,49 @@ def all_Exams(request):
 def ListExamsView(request):
     all_exams = Exam.objects.all()
     return render(request, "list_exams.html", {"exams": all_exams})
+
+
+def addStudentView(request):
+    if request.method == "POST":
+        addStudentForm = AddStudentForm(request.POST)
+        if addStudentForm.is_valid():
+            data = addStudentForm.cleaned_data
+            student = Student()
+            student.first_name = data["first_name"]
+            student.last_name = data["last_name"]
+            student.date_of_birth = data["date_of_birth"]
+            student.email = data["email"]
+            student.phone_number = data["phone_number"]
+            student.address = data["address"]
+
+            student.save()
+
+            return redirect("index")
+    else:
+        addStudentForm = AddStudentForm()
+    
+    return render(request, 'add_student.html', {'form': addStudentForm})
+
+
+
+def studentListView(request):
+    students = Student.objects.all()
+    return render(request, 'list_students.html', {'students': students})
+
+
+def updateStudentView(request, id):
+    student = get_object_or_404(Student, id=id)
+    if request.method == "POST":
+        form = UpdateStudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect("list_students")
+    else:
+        form = UpdateStudentForm(instance=student)
+    return render(request, "update_student.html", {"form": form})
+
+
+def deleteStudentView(request, id):
+    student = get_object_or_404(Student, pk=id)
+    student.delete()
+    return redirect("list_students")
