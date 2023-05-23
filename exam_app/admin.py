@@ -11,3 +11,11 @@ class examModelAdmin(admin.ModelAdmin):
 @admin.register(Student)
 class studentModelAdmin(admin.ModelAdmin):
     list_display = ["first_name", "last_name"]
+
+@admin.register(StudentAccount)
+class studentAccountModelAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Group)
+class groupModelAdmin(admin.ModelAdmin):
+    list_display = ["name"]

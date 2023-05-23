@@ -18,28 +18,31 @@ class DateInput(forms.DateInput):
 class TimeInput(forms.TimeInput):
     input_type = 'time'
 
-class AddExamForm(forms.Form):
-    name = forms.CharField()
-    salle = forms.CharField()
-    group = forms.CharField()
-    day = forms.DateField(widget=DateInput)
-    start_time = forms.TimeField(widget=TimeInput)
-    end_time = forms.TimeField(widget=TimeInput)
 
+class AddExamForm(forms.ModelForm):
+    class Meta:
+        model = Exam
+        fields=('name','salle', 'group', 'day','start_time', 'end_time')
+        widgets = {
+            'start_time': TimeInput,
+            'end_time': TimeInput,
+            'day': DateInput
+        }
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control mn-2'
 
 
-class AddStudentForm(forms.Form):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    email = forms.EmailField()
-    phone_number = forms.CharField()
-    address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
-
+class AddStudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields=('first_name','last_name', 'date_of_birth', 'email','phone_number', 'address', 'group')
+        widgets = {
+            'date_of_birth': DateInput,
+        }
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():

@@ -18,6 +18,7 @@
       <a href="#" class="logo">Hello {{ request.user }}</a>
       <div class="menu-content">
         <ul class="menu-items">
+          {% if request.user.is_superuser %}
           <li class="item">
             <a href="{% url 'index' %}">Calendar</a>
           </li>
@@ -58,8 +59,16 @@
               <li class="item">
                 <a href="{% url 'list_exams' %}">List Exams</a>
               </li>
+              
             </ul>
           </li>
+          {% endif %}
+
+          {% if request.user.is_active and not request.user.is_superuser %}
+          <li class="item">
+            <a href="{% url 'index' %}">my exams</a>
+          </li>
+          {% endif %}
           {% comment %} <li class="item">
             <a href="#">Your second link</a>
           </li> {% endcomment %}
