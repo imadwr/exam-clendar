@@ -12,5 +12,9 @@ urlpatterns = [
     path('addstudent/', addStudentView, name="add_student"),
     path('list_students/', studentListView, name="list_students"),
     path('delete_student/<int:id>', deleteStudentView, name="delete_student"),
-    path('update_student/<int:id>', updateStudentView, name="update_student")
+    path('update_student/<int:id>', updateStudentView, name="update_student"),
+    path('list_departments/', departmentListView, name='department_list'),
+    path('department_add/', departmentAddView, name='department_add'),
+    path('department_update/<int:id>', departmentUpdateView, name="department_update"),
+    path('department_delete/<int:id>', departmentDeleteView, name="department_delete")
 ]

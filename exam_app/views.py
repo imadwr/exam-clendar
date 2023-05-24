@@ -128,3 +128,37 @@ def deleteStudentView(request, id):
     student = get_object_or_404(Student, pk=id)
     student.delete()
     return redirect("list_students")
+
+
+def departmentAddView(request):
+    if request.method == 'POST':
+        form = DepartementForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('department_list')
+    else:
+        form = DepartementForm()
+    return render(request, 'department_add.html', {'form': form})
+
+
+def departmentListView(request):
+    departments = Departement.objects.all()
+    return render(request, 'department_list.html', {'departments': departments})
+
+
+def departmentUpdateView(request, id):
+    department = get_object_or_404(Departement, pk=id)
+    if request.method == 'POST':
+        form = DepartementForm(request.POST, instance=department)
+        if form.is_valid():
+            form.save()
+            return redirect('department_list')
+    else:
+        form = DepartementForm(instance=department)
+    return render(request, 'department_update.html', {'form': form})
+
+def departmentDeleteView(request, id):
+    department = get_object_or_404(Departement, pk=id)
+    department.delete()
+    return redirect("department_list")
+

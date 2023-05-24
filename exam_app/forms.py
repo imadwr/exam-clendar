@@ -52,8 +52,30 @@ class AddStudentForm(forms.ModelForm):
 class UpdateStudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'date_of_birth', 'email', 'phone_number', 'address']
+        fields = ['first_name', 'last_name', 'date_of_birth', 'email', 'phone_number', 'address', 'group']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mn-2'
+
+
+class DepartementForm(forms.ModelForm):
+    class Meta:
+        model = Departement
+        fields = ['name', 'description']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mn-2'
+
+
+class FormationForm(forms.ModelForm):
+    class Meta:
+        model = Formation
+        fields = ['name', 'departement']
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
