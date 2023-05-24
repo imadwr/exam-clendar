@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Date Debut</th>
+                <th>Date Fin</th>
+                <th>Annee Scolaire</th>
+                <th>Formation</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for semestre in semestres %}
+            <tr>
+                <td>{{ semestre.libelle }}</td>
+                <td>{{ semestre.date_debut }}</td>
+                <td>{{ semestre.date_fin }}</td>
+                <td>{{ semestre.annee_scolaire }}</td>
+                <td>{{ semestre.formation }}</td>
+                <td>
+                    <a href="{% url 'semester_update' semestre.id %}" class="btn btn-secondary">Edit</a>
+                    <a href="{% url 'semester_delete' semestre.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

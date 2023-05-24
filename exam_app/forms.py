@@ -80,3 +80,29 @@ class FormationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control mn-2'
+
+
+class ModuleForm(forms.ModelForm):
+    class Meta:
+        model = Module
+        fields = ['libelle', 'effectif', 'semestre']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mn-2'
+
+
+class SemestreForm(forms.ModelForm):
+    class Meta:
+        model = Semestre
+        fields = ['libelle', 'date_debut', 'date_fin', 'annee_scolaire', 'formation']
+        widgets = {
+            'date_debut': DateInput,
+            'date_fin': DateInput
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mn-2'

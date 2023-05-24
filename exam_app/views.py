@@ -162,3 +162,98 @@ def departmentDeleteView(request, id):
     department.delete()
     return redirect("department_list")
 
+
+def formationAddView(request):
+    if request.method == 'POST':
+        form = FormationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('formation_list')
+    else:
+        form = FormationForm()
+    return render(request, 'formation_add.html', {'form': form})
+
+def formationListView(request):
+    formations = Formation.objects.all()
+    return render(request, 'formation_list.html', {'formations': formations})
+
+
+def formationUpdateView(request, id):
+    formation = get_object_or_404(Formation, pk=id)
+    if request.method == 'POST':
+        form = FormationForm(request.POST, instance=formation)
+        if form.is_valid():
+            form.save()
+            return redirect('formation_list')
+    else:
+        form = FormationForm(instance=formation)
+    return render(request, 'formation_update.html', {'form': form})
+
+def formationDeleteView(request, id):
+    formation = get_object_or_404(Formation, pk=id)
+    formation.delete()
+    return redirect("formation_list")
+
+
+def moduleListView(request):
+    modules = Module.objects.all()
+    return render(request, 'module_list.html', {'modules': modules})
+
+
+def moduleAddView(request):
+    if request.method == 'POST':
+        form = ModuleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('module_list')
+    else:
+        form = ModuleForm()
+    return render(request, 'module_add.html', {'form': form})
+
+def moduleUpdateView(request, id):
+    module = get_object_or_404(Module, pk=id)
+    if request.method == 'POST':
+        form = ModuleForm(request.POST, instance=module)
+        if form.is_valid():
+            form.save()
+            return redirect('module_list')
+    else:
+        form = ModuleForm(instance=module)
+    return render(request, 'module_update.html', {'form': form, 'module': module})
+
+def moduleDeleteView(request, id):
+    module = get_object_or_404(Module, pk=id)
+    module.delete()
+    return redirect("module_list")
+
+
+def semesterListView(request):
+    semestres = Semestre.objects.all()
+    return render(request, 'semester_list.html', {'semestres': semestres})
+
+
+def semesterAddView(request):
+    if request.method == 'POST':
+        form = SemestreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('semester_list')
+    else:
+        form = SemestreForm()
+    return render(request, 'semester_add.html', {'form': form})
+
+def semesterUpdateView(request, id):
+    semestre = get_object_or_404(Semestre, pk=id)
+    if request.method == 'POST':
+        form = SemestreForm(request.POST, instance=semestre)
+        if form.is_valid():
+            form.save()
+            return redirect('semester_list')
+    else:
+        form = SemestreForm(instance=semestre)
+    return render(request, 'semester_update.html', {'form': form})
+
+def semesterDeleteView(request, id):
+    semester = get_object_or_404(Semestre, pk=id)
+    semester.delete()
+    return redirect("semester_list")

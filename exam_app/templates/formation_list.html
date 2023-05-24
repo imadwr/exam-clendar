@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for formation in formations %}
+            <tr>
+        <td>{{ formation.name }}</td>
+                <td>{{ formation.departement }}</td>
+                <td>
+                    <a href="{% url 'formation_update' formation.id %}" class="btn btn-secondary">Edit</a>
+                    <a href="{% url 'formation_delete' formation.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
