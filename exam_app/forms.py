@@ -48,6 +48,16 @@ class AddStudentForm(forms.ModelForm):
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control mn-2'
 
+class ProfessorForm(forms.ModelForm):
+    class Meta:
+        model = Professor
+        fields=('first_name','last_name', 'email','phone_number')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mn-2'
+
 
 class UpdateStudentForm(forms.ModelForm):
     class Meta:

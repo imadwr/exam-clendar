@@ -257,3 +257,39 @@ def semesterDeleteView(request, id):
     semester = get_object_or_404(Semestre, pk=id)
     semester.delete()
     return redirect("semester_list")
+
+
+def addProfessorView(request):
+    if request.method == "POST":
+        addProfessorForm = ProfessorForm(request.POST)
+        if addProfessorForm.is_valid():
+            addProfessorForm.save()
+
+            return redirect("index")
+    else:
+        addProfessorForm = ProfessorForm()
+
+    return render(request, 'add_professor.html', {'form': addProfessorForm})
+
+
+def professorListView(request):
+    professors = Professor.objects.all()
+    return render(request, 'list_professor.html', {'professors': professors})
+
+
+def updateProfessorView(request, id):
+    professor = get_object_or_404(Professor, id=id)
+    if request.method == "POST":
+        form = ProfessorForm(request.POST, instance=professor)
+        if form.is_valid():
+            form.save()
+            return redirect("list_professors")
+    else:
+        form = ProfessorForm(instance=professor)
+    return render(request, "update_professor.html", {"form": form})
+
+
+def deleteProfessorView(request, id):
+    professor = get_object_or_404(Professor, pk=id)
+    professor.delete()
+    return redirect("list_professors")

@@ -29,4 +29,8 @@ urlpatterns = [
     path('semester_add/', semesterAddView, name='semester_add'),
     path('semester_update/<int:id>', semesterUpdateView, name='semester_update'),
     path('semester_delete/<int:id>', semesterDeleteView, name='semester_delete'),
+    path('list_professors/', professorListView, name="list_professors"),
+    path('add_professors', addProfessorView, name="add_professors"),
+    path('delete_professors/<int:id>', deleteProfessorView, name="delete_professors"),
+    path('update_professors/<int:id>', updateProfessorView, name="update_professors"),
 ]

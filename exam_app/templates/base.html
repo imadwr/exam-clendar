@@ -45,6 +45,24 @@
           </li>
           <li class="item">
             <div class="submenu-item">
+              <span>Manage Professors</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <ul class="menu-items submenu">
+              <div class="menu-title">
+                <i class="fa-solid fa-chevron-left"></i>
+                Manage
+              </div>
+              <li class="item">
+                <a href="{% url 'list_professors' %}">List Professors</a>
+              </li>
+              <li class="item">
+                <a href="{% url 'add_professors' %}">Add Professors</a>
+              </li>
+            </ul>
+          </li>
+          <li class="item">
+            <div class="submenu-item">
               <span>Manage Exams</span>
               <i class="fa-solid fa-chevron-right"></i>
             </div>
