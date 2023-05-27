@@ -25,19 +25,51 @@
     
   </head>
   <body>
-    <div class="container">
-      <div class="login-frame">
-        <h2>Welcome</h2>
-        <h3>Please login to your account</h3>
-        <form method="POST">
-          {% csrf_token %} {{ form.as_p }} {% if error_login%}
-          <div class="alert alert-danger" role="alert">
-            Username or password are not correct, please try again!
+    <section class="vh-300 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white login-frame" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <div class="mb-md-2 mt-md-4 pb-1 login-input-div">
+                    <img class="mb-5" src="https://www.emsi.ma/wp-content/uploads/2020/07/logo-1.png" alt="Girl in a jacket" width="60%">
+                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+      
+                    {% comment %} <div class="form-outline form-white mb-4">
+                      <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                      <label class="form-label" for="typeEmailX">Email</label>
+                    </div>
+      
+                    <div class="form-outline form-white mb-4">
+                      <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                      <label class="form-label" for="typePasswordX">Password</label>
+                    </div> {% endcomment %}
+                    <form method="POST">
+                      {% csrf_token %} {{ form.as_p }} {% if error_login%}
+                      <div class="alert alert-danger" role="alert">
+                        Username or password are not correct, please try again!
+                      </div>
+                      {% endif %}
+                      <button type="submit" class="btn btn-outline-light btn-lg px-5 mt-3">Login</button>
+                    </form>
+      
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+    
+      
+                  </div>
+      
+                  <div>
+                    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                    </p>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
           </div>
-          {% endif %}
-          <button type="submit" class="btn btn-lg btn-primary">Login</button>
-        </form>
-      </div>
-    </div>
+        </div>
+      </section>
   </body>
 </html>

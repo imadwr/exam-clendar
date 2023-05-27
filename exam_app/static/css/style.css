@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 120vh;
   z-index: 100;
   background: #e7f2fd;
 }

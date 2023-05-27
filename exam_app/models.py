@@ -22,13 +22,27 @@ class Student(models.Model):
         return f"{self.first_name} {self.last_name}"
     
 
+class Salle(models.Model):
+    name = models.CharField(max_length=10)
+    capacite = models.IntegerField()
 
+    def __str__(self):
+        return self.name
     
+class Professor(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+    
 class Exam(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    salle = models.CharField(max_length=10, null=True, blank=True)
+    salle = models.ForeignKey(Salle, on_delete=models.CASCADE, null=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
+    responsable = models.ForeignKey(Professor, on_delete=models.CASCADE, null=True)
     day = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -39,14 +53,6 @@ class StudentAccount(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
 
-class Professor(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name} {self.classe}"
 
 
 class Departement(models.Model):
@@ -86,5 +92,8 @@ class Semestre(models.Model):
 
     def __str__(self):
         return self.libelle
+    
+
+
 
 

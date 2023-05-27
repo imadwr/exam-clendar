@@ -1,31 +1,15 @@
-.login-frame {
-    width: 60%;
-    padding: 30px 100px;
-    padding-bottom: 60px;
-    margin: auto;
-    margin-top: 40px;
-    background-color: #0a0d29;
-    color: #A5C0DD;
-}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(153, 155, 163), rgb(214, 215, 216))
+    }
 
 
-.login-frame h3 {
-    font-size: 25px;
-    margin-bottom: 30px;
-}
-
-.login-frame h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-.login-frame label {
+.login-input-div label {
     font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.login-frame button {
-    background: #576CBC;
-    width: 40%;
-    margin-top: 30px;
 }

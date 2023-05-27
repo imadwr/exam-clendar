@@ -51,6 +51,19 @@ def addExamView(request):
             exam.start_time = data["start_time"]
             exam.end_time = data["end_time"]
 
+            all_exams = Exam.objects.all()
+
+            for ex in all_exams:
+                if exam.name == ex.name and exam.group == ex.group:
+                    error = "Exam already programmed for this group"
+                    return render(request, 'add_exam.html', {'form': addExamForm, 'error': error})
+
+                if ex.salle == exam.salle and ex.day == exam.day:
+                    if not ((exam.start_time < ex.start_time and exam.end_time < ex.start_time) or (exam.start_time > ex.end_time and exam.end_time > ex.end_time)):
+                        error = "Classroom not disponible in this day and time"
+                        return render(request, 'add_exam.html', {'form': addExamForm, 'error': error})
+
+
             exam.save()
 
             return redirect("index")

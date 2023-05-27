@@ -3,6 +3,11 @@
 {% block content %}
     <form method="POST" action="{% url 'add_exam' %}">
         <h1>Add Exam</h1>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Add</button>
