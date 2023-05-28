@@ -22,7 +22,7 @@ class TimeInput(forms.TimeInput):
 class AddExamForm(forms.ModelForm):
     class Meta:
         model = Exam
-        fields=('name','salle', 'group','responsable', 'day','start_time', 'end_time')
+        fields=('module','salle', 'group','responsable', 'day','start_time', 'end_time')
         widgets = {
             'start_time': TimeInput,
             'end_time': TimeInput,

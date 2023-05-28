@@ -38,22 +38,6 @@ class Professor(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     
-class Exam(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
-    salle = models.ForeignKey(Salle, on_delete=models.CASCADE, null=True)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
-    responsable = models.ForeignKey(Professor, on_delete=models.CASCADE, null=True)
-    day = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-
-
-class StudentAccount(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
-
-
-
 
 class Departement(models.Model):
     name = models.CharField(max_length=30)
@@ -93,6 +77,25 @@ class Semestre(models.Model):
     def __str__(self):
         return self.libelle
     
+    
+class Exam(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, null=True)
+    salle = models.ForeignKey(Salle, on_delete=models.CASCADE, null=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
+    responsable = models.ForeignKey(Professor, on_delete=models.CASCADE, null=True)
+    day = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+
+class StudentAccount(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+
+
+
+
 
 
 

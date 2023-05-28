@@ -5,7 +5,7 @@ from .models import *
 
 @admin.register(Exam)
 class examModelAdmin(admin.ModelAdmin):
-    list_display = ["name", "group", "salle", "day", "start_time", "end_time"]
+    list_display = ["module", "group", "salle", "day", "start_time", "end_time"]
 
 
 @admin.register(Student)

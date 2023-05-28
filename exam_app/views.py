@@ -3,6 +3,7 @@ from .forms import *
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 # Create your views here.
 
 @login_required(login_url='/login')
@@ -44,7 +45,7 @@ def addExamView(request):
         if addExamForm.is_valid():
             data = addExamForm.cleaned_data
             exam = Exam()
-            exam.name = data["name"]
+            exam.module = data["module"]
             exam.salle = data["salle"]
             exam.group = data["group"]
             exam.day = data["day"]
@@ -53,8 +54,10 @@ def addExamView(request):
 
             all_exams = Exam.objects.all()
 
+            
+
             for ex in all_exams:
-                if exam.name == ex.name and exam.group == ex.group:
+                if exam.module == ex.module and exam.group == ex.group:
                     error = "Exam already programmed for this group"
                     return render(request, 'add_exam.html', {'form': addExamForm, 'error': error})
 
@@ -82,11 +85,13 @@ def all_Exams(request):
     all_exams = Exam.objects.all()
     out = []
     for exam in all_exams:
+        start_time_date = datetime.combine(exam.day, exam.start_time)
+        end_time_date = datetime.combine(exam.day, exam.end_time)
         out.append({
-            'title': exam.name,
+            'title': exam.module.libelle,
             'id': exam.id,
-            'start': exam.start_time.strftime("%m/%d/%Y, %H:%M:%S"),
-            'end': exam.end_time.strftime("%m/%d/%Y, %H:%M:%S"),
+            'start': start_time_date.strftime("%m/%d/%Y, %H:%M:%S"),
+            'end': end_time_date.strftime("%m/%d/%Y, %H:%M:%S"),
         })
 
     return JsonResponse(out, safe=False)
@@ -306,3 +311,20 @@ def deleteProfessorView(request, id):
     professor = get_object_or_404(Professor, pk=id)
     professor.delete()
     return redirect("list_professors")
+
+
+def StudentExamsView(request):
+    student_accounts = StudentAccount.objects.all()
+    student_account = "error"
+    for acc in student_accounts:
+        if acc.user == request.user:
+            student_account = acc;
+
+    print(student_account)
+
+    student = student_account.student
+
+    group = student.group
+
+    all_exams = Exam.objects.filter(group=group)
+    return render(request, "studentExams.html", {"all_exams": all_exams})

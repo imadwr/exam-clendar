@@ -33,4 +33,5 @@ urlpatterns = [
     path('add_professors', addProfessorView, name="add_professors"),
     path('delete_professors/<int:id>', deleteProfessorView, name="delete_professors"),
     path('update_professors/<int:id>', updateProfessorView, name="update_professors"),
+    path('student_exams/', StudentExamsView, name="student_exams"),
 ]

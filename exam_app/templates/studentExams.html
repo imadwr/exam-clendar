@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    {% for exam in all_exams %}
+    <div class="col col-4">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem">
+        <div class="card-header">{{ exam.module }}</div>
+        <div class="card-body">
+          <h5 class="card-title">Info</h5>
+          <hr>
+          <ul>
+            <li>Salle: {{ exam.salle }}</li>
+            <li>Group: {{ exam.group }}</li>
+            <li>responsable: {{ exam.responsable }}</li>
+            <hr>
+            <li>Day: {{ exam.day }}</li>
+            <li>Start time: {{ exam.start_time }}</li>
+            <li>End time: {{ exam.end_time }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
