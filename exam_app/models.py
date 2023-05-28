@@ -92,6 +92,9 @@ class StudentAccount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.student.first_name} {self.student.last_name}"
+
 
 
 
